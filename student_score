@@ -1,0 +1,58 @@
+from tkinter import*
+from tkinter.ttk import*
+from tkinter.filedialog import*
+gui = Tk()
+
+gui.geometry("800x600")
+
+gui.title("Student score")
+
+#Left Lable
+
+name_lable = Label(text="name:",font=("Arial",20))
+name_lable.grid(row=1,column=1,pady=(60,0),padx=(30,0))
+
+Computing_lable = Label(text="Computing:",font=("Arial",20))
+Computing_lable.grid(row=2,column=1,padx=(30,0),pady=10)
+
+English_lable = Label(text="English marks:",font=("Arial",20))
+English_lable.grid(row=3,column=1,padx=(30,0))
+
+#Right Lable
+
+Science_lable = Label(text="Science marks:",font=("Arial",20))
+Science_lable.grid(row=1,column=3,pady=(60,0),padx=(30,0))
+
+math_lable = Label(text="math marks:",font=("Arial",20))
+math_lable.grid(row=2,column=3,padx=(30,0),pady=10)
+
+RE_lable = Label(text="RE marks:",font=("Arial",20))
+RE_lable.grid(row=3,column=3,padx=(30,0),)
+
+# Left Entry
+
+name_Entry = Entry(text="name:")
+name_Entry.grid(row=1,column=2,pady=(60,0))
+
+Computing_Entry = Entry(text="Computing:")
+Computing_Entry.grid(row=2,column=2)
+
+English_Entry = Entry(text="English marks:")
+English_Entry.grid(row=3,column=2)
+
+#Right Entry
+
+Science_Entry = Entry(text="Science marks:")
+Science_Entry.grid(row=1,column=4,pady=(60,0))
+
+math_Entry = Entry(text="math marks:")
+math_Entry.grid(row=2,column=4)
+
+RE_Entry = Entry(text="RE marks:")
+RE_Entry.grid(row=3,column=4)
+
+# listbox
+
+listbox1 = Listbox(width=77,height=15)
+listbox1.place(x=30,y=200)
+gui.mainloop()
