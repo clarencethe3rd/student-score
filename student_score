@@ -7,6 +7,52 @@ gui.geometry("800x600")
 
 gui.title("Student score")
 
+myscore = {}
+def clear():
+    RE_Entry.delete(0,END)
+    English_Entry.delete(0,END)
+    math_Entry.delete(0,END)
+    name_Entry.delete(0,END)
+    Science_Entry.delete(0,END)
+    Computing_Entry.delete(0,END)
+    
+def save():
+    f=asksaveasfile(defaultextension=".txt")
+    print(myscore,file=f)
+    
+def open1():
+    global myscore
+    f=askopenfile(title = "Open file")
+    myscore = eval(f.read())
+    for key in myscore.keys():
+        listbox1.insert(END,key)
+        
+def edit():
+    clear()
+    index = listbox1.curselection()
+    name_Entry.insert(0,listbox1.get(index))
+    RE_Entry.insert(0,myscore[listbox1.get(index)][0])
+    English_Entry.insert(0,myscore[listbox1.get(index)][1])
+    math_Entry.insert(0,myscore[listbox1.get(index)][2])
+    Science_Entry.insert(0,myscore[listbox1.get(index)][3])
+    Computing_Entry.insert(0,myscore[listbox1.get(index)][4])
+    
+def update():
+    key = name_Entry.get()
+    myscore[key] = (RE_Entry.get(),English_Entry.get(),math_Entry.get(),Science_Entry.get(),Computing_Entry.get())
+    add()
+    clear()
+
+def delete():
+    index = listbox1.curselection()
+    listbox1.delete(index)
+    del myscore[listbox1.get(index)]
+        
+def add():
+    key = name_Entry.get()
+    myscore[key] = (RE_Entry.get(),English_Entry.get(),math_Entry.get(),Science_Entry.get(),Computing_Entry.get())
+    listbox1.insert(END,key)
+    clear()
 #Left Lable
 
 name_lable = Label(text="name:",font=("Arial",20))
@@ -55,4 +101,22 @@ RE_Entry.grid(row=3,column=4)
 
 listbox1 = Listbox(width=77,height=15)
 listbox1.place(x=30,y=200)
+
+#Buttons
+
+edit_button = Button(text="edit",width=10,command=edit)
+edit_button.place(x=30,y=470)
+
+del_button = Button(text="delete",width=10, command=delete)
+del_button.place(x=171,y=470)
+
+save_button = Button(text="save",width=10,command=save)
+save_button.place(x=312,y=470)
+
+update_button = Button(text="update",width=10,command=update)
+update_button.place(x=453,y=470)
+
+add_button = Button(text="add",width=10,command=add)
+add_button.place(x=594,y=470)
+
 gui.mainloop()
